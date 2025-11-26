@@ -18,11 +18,12 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies (if needed)
+      - name: Install dependencies (if present)
         run: |
           if [ -f playwrite/package.json ]; then
             cd playwrite
-            npm install
+            npm ci
+            npx playwright install --with-deps
           else
             echo "No package.json in playwrite/, skipping npm install"
           fi
@@ -31,6 +32,16 @@ jobs:
         run: |
           cd playwrite
           node githubcopilot-agent/index.js convert
+
+      - name: Run converted tests (if present)
+        if: ${{ always() }}
+        run: |
+          if [ -f playwrite/package.json ]; then
+            cd playwrite
+            npm run test:all || true
+          else
+            echo "No package.json in playwrite/, skipping tests"
+          fi
 
       - name: Upload converted artifacts
         uses: actions/upload-artifact@v4
