@@ -12,22 +12,30 @@ export class HomePage {
   }
 
   async clickOnContactsLink() {
-    await this.page.click(`xpath=//a[contains(text(),\'Contacts\')]`);
+    const frame = this.page.frame({ name: 'mainpanel' });
+    const ctx: any = frame ?? this.page;
+    await ctx.click(`xpath=//a[contains(text(),\'Contacts\')]`);
     // Page transition to ContactsPage
   }
 
   async clickOnDealsLink() {
-    await this.page.click(`xpath=//a[contains(text(),\'Deals\')]`);
+    const frame = this.page.frame({ name: 'mainpanel' });
+    const ctx: any = frame ?? this.page;
+    await ctx.click(`xpath=//a[contains(text(),\'Deals\')]`);
     // Page transition to DealsPage
   }
 
   async clickOnTasksLink() {
-    await this.page.click(`xpath=//a[contains(text(),\'Tasks\')]`);
+    const frame = this.page.frame({ name: 'mainpanel' });
+    const ctx: any = frame ?? this.page;
+    await ctx.click(`xpath=//a[contains(text(),\'Tasks\')]`);
     // Page transition to TasksPage
   }
 
   async clickOnNewContactLink() {
-    await this.page.click(`xpath=//a[contains(text(),\'New Contact\')]`);
+    const frame = this.page.frame({ name: 'mainpanel' });
+    const ctx: any = frame ?? this.page;
+    await ctx.click(`xpath=//a[contains(text(),\'New Contact\')]`);
   }
 
 }

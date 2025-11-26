@@ -4,7 +4,8 @@ import { HomePage } from '../pages/HomePage';
 import { LoginPage } from '../pages/LoginPage';
 
 (async () => {
-  const browser = await chromium.launch({ headless: false });
+  const HEADLESS = (process.env.HEADLESS || 'false') !== 'false' ? true : (process.env.HEADLESS === 'true');
+  const browser = await chromium.launch({ headless: HEADLESS });
   const page = await browser.newPage();
   const BASE_URL = process.env.BASE_URL || 'https://www.freecrm.com';
   await page.goto(BASE_URL);
@@ -17,10 +18,8 @@ import { LoginPage } from '../pages/LoginPage';
     await homePage.verifyHomePageTitle();
 
     // @Test: verifyUserNameTest
-    await testUtil.switchToFrame();
 
     // @Test: verifyContactsLinkTest
-    await testUtil.switchToFrame();
     await homePage.clickOnContactsLink();
 
     console.log('All tests passed!');
