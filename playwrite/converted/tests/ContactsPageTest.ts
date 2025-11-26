@@ -6,7 +6,8 @@ import { LoginPage } from '../pages/LoginPage';
 (async () => {
   const browser = await chromium.launch({ headless: false });
   const page = await browser.newPage();
-  await page.goto('http://localhost:3000'); // TODO: Set correct URL
+  const BASE_URL = process.env.BASE_URL || 'https://www.freecrm.com';
+  await page.goto(BASE_URL);
   const contactsPage = new ContactsPage(page);
   const homePage = new HomePage(page);
   const loginPage = new LoginPage(page);
