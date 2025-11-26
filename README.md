@@ -193,18 +193,7 @@ jobs:
 
 ---
 
-## 📝 License
 
-This project is open-source and free to use.
 
----
 
-If you want, I can also add:
 
-* API testing support
-* Docker container setup
-* Allure reporting
-* Sample test cases with screenshots
-* Environment-based configuration
-
-Just tell me!
