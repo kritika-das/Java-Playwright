@@ -18,10 +18,14 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install dependencies
+      - name: Install dependencies (if needed)
         run: |
-          cd playwrite
-          npm install
+          if [ -f playwrite/package.json ]; then
+            cd playwrite
+            npm install
+          else
+            echo "No package.json in playwrite/, skipping npm install"
+          fi
 
       - name: Run migration agent (convert)
         run: |
