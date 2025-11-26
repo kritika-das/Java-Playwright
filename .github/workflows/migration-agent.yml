@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           cd playwrite
-          npm ci
+          npm install
 
       - name: Run migration agent (convert)
         run: |
